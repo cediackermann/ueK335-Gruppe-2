@@ -19,6 +19,9 @@
     },
     "web": {
       "favicon": "./assets/favicon-16x16.png"
-    }
+    },
+    "plugins": [
+      "expo-secure-store"
+    ]
   }
 }

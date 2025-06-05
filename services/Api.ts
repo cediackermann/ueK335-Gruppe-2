@@ -1,5 +1,6 @@
 import { getValueFor } from "./securestorage";
-const baseURL = "http://localhost:3000/";
+const baseURL = process.env.EXPO_PUBLIC_BASE_URL;
+console.log("Base URL:", baseURL);
 
 export async function fetchApi<T>(
   path: string,

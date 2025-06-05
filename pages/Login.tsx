@@ -1,18 +1,19 @@
 import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { Text, TextInput } from "react-native-paper";
-import { fetchApi } from "../services/Api";
+import { login } from "../services/Auth";
 
 export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
 
   const handleLogin = async () => {
-    const response = await fetchApi("login", {
-      method: "POST",
-      body: JSON.stringify({ email, password }),
-    });
-    console.log("Login response:", response);
+    try {
+      const response = await login(email, password);
+    } catch (error) {
+      console.error("Login failed:", error);
+      alert("Login failed. Please check your credentials.");
+    }
   };
 
   return (

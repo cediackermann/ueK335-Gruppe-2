@@ -1,6 +1,5 @@
 import { getValueFor } from "./securestorage";
 const baseURL = process.env.EXPO_PUBLIC_BASE_URL;
-console.log("Base URL:", baseURL);
 
 export async function fetchApi<T>(
   path: string,

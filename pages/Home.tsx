@@ -8,6 +8,7 @@ export type RootStackParamList = {
   Books: undefined;
   Login: undefined;
   Main: undefined;
+  Register: undefined;
 };
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
@@ -76,16 +77,16 @@ const styles = StyleSheet.create({
   pageContainer: { flex: 1, backgroundColor: "#F5F3F9", justifyContent: 'space-between', paddingHorizontal: 20, paddingTop: Platform.OS === 'android' ? (StatusBar.currentHeight || 0) + 10 : 30, paddingBottom: 80 },
   contentContainer: { alignItems: "center" },
   appLogo: { width: 200, height: 200, resizeMode: "contain", marginTop: 60, marginBottom: 30, alignSelf: "center" },
-  welcomeTitle: { fontWeight: 'bold', color: "#0D2A4F", marginBottom: 6, textAlign: 'center', fontSize: 24 },
+  welcomeTitle: { fontWeight: 'bold', color: "#0A2543", marginBottom: 6, textAlign: 'center', fontSize: 24 },
   welcomeSubtitle: { fontSize: 14, color: '#4A4A4A', textAlign: 'center', marginBottom: 70, paddingHorizontal: 10 },
-  recommendationTitle: { fontWeight: 'bold', color: "#0D2A4F", marginBottom: 12, textAlign: 'center', fontSize: 16 },
+  recommendationTitle: { fontWeight: 'bold', color: "#0A2543", marginBottom: 12, textAlign: 'center', fontSize: 16 },
   card: { width: '100%', maxWidth: 350, backgroundColor: '#E8E5EE', elevation: 3, borderRadius: 12, paddingVertical: 5 },
   cardHeader: { flexDirection: 'row', justifyContent: 'space-between', alignItems: 'center', marginBottom: 3 },
-  bookName: { fontSize: 17, fontWeight: '600', color: '#0D2A4F' },
+  bookName: { fontSize: 17, fontWeight: '600', color: '#0A2543' },
   authorText: { fontSize: 15, color: '#333', marginTop: 2 },
   pagesText: { fontSize: 13, color: '#333' },
   footerContainer: { width: '100%', alignItems: 'center' },
-  button: { backgroundColor: "#0D2A4F", borderRadius: 5, width: '100%', height: 45, maxWidth: 350 },
+  button: { backgroundColor: "#0A2543", borderRadius: 5, width: '100%', height: 45, maxWidth: 350 },
   buttonContent: { paddingVertical: 2 },
   buttonLabel: { fontSize: 16, fontWeight: 'bold', color: '#FFFFFF' },
 });

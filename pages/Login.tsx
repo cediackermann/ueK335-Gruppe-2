@@ -2,6 +2,7 @@ import React from "react";
 import { Image, StyleSheet, View } from "react-native";
 import { Text, TextInput } from "react-native-paper";
 import { login } from "../services/Auth";
+import { setActiveUser } from "../services/ActiveUser";
 
 export default function Login() {
   const [email, setEmail] = React.useState("");
@@ -9,7 +10,8 @@ export default function Login() {
 
   const handleLogin = async () => {
     try {
-      const response = await login(email, password);
+      const res = await login(email, password);
+      await setActiveUser(res.user);
     } catch (error) {
       console.error("Login failed:", error);
       alert("Login failed. Please check your credentials.");

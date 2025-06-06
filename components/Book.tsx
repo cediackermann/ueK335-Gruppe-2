@@ -3,16 +3,6 @@ import { View, StyleSheet } from 'react-native'
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Button, Card, IconButton, Paragraph, Text, Title } from 'react-native-paper'
 
-export type Book = {
-  id: number,
-  title: string,
-  isbn13: string,
-  language_id: number,
-  num_pages: number,
-  publication_date: string,
-  publisher_id: number
-}
-
 export const BookItem = ({ title, publisher } : { title: string, publisher: string }) => {
   return (
     <>
@@ -68,21 +58,7 @@ const styles = StyleSheet.create({
   }
 })
 
-function Book() {
-  const todaysBook = {
-    bookname: "The Midnight Library",
-    author: "Matt Haig",
-    pages: "288",
-  };
-  return (
-    <>
-    <BookItem title={todaysBook.bookname} publisher={todaysBook.author}></BookItem>
-    <BookItem title={todaysBook.bookname} publisher={todaysBook.author}></BookItem>
-    </>
-  )
-}
 
-export default Book
 
 
 

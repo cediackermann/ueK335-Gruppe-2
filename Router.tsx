@@ -1,14 +1,10 @@
 import { useActiveUser } from "./services/ActiveUser";
 import Main from "./pages/Main";
-import Login from "./pages/Login";
+import Auth from "./pages/Auth";
 
 import React from "react";
 
 export default function Router() {
   const activeUser = useActiveUser();
-  return (
-    <React.Suspense fallback={<React.Fragment>Loading...</React.Fragment>}>
-      {activeUser?.data !== null ? <Main /> : <Login />}
-    </React.Suspense>
-  );
+  return <>{activeUser.data !== null ? <Main /> : <Auth />}</>;
 }

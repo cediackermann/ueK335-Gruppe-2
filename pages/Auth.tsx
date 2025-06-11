@@ -11,6 +11,7 @@ import LoginForm from "../components/LoginForm";
 import SignupForm from "../components/SignupForm";
 import { LoginFormData, SignupApiPayload } from "../validation/schema";
 import { login, signUp } from "../services/Auth";
+import { Image } from "react-native";
 
 const Auth: React.FC = () => {
   const [isLoginView, setIsLoginView] = useState<boolean>(true);
@@ -42,6 +43,7 @@ const Auth: React.FC = () => {
       style={styles.keyboardAvoidingContainer}
     >
       <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <Image source={require("../assets/logo.png")} style={styles.logo} />
         {isLoginView ? (
           <LoginForm onSubmit={handleLoginSubmit} />
         ) : (
@@ -65,6 +67,12 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     justifyContent: "center",
     alignItems: "center",
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    marginBottom: 30,
+    marginTop: 20,
   },
 });
 

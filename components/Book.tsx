@@ -2,13 +2,27 @@ import React from 'react'
 import { View, StyleSheet } from 'react-native'
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Button, Card, IconButton, Paragraph, Text, Title } from 'react-native-paper'
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from '../types';
+import { useNavigation } from '@react-navigation/native';
 
-export const BookItem = ({ title, publisher } : { title: string, publisher: string }) => {
+type BookItemScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Books'>;
+
+export const BookItem = ({ id, title, publisher } : { id?: number, title: string, publisher: string }) => {
+  const navigation = useNavigation<BookItemScreenNavigationProp>();
+  const handleEdit = () => {
+
+  }
+
+  const handleDelete = () => {
+
+  }
+
   return (
     <>
     <Card mode='elevated' style={styles.card}>
-      <View style={{width:'100%', display:'flex', flexDirection:'row', justifyContent:'space-between'}}>
-      <View>
+      <View style={{width:'100%', flexDirection:'row', justifyContent:'space-between'}}>
+      <View style={{width: 270}}>
       <Card.Content>
         <View style={styles.cardHeader}>
           <Title style={styles.cardHeader}>{title}</Title>
@@ -18,8 +32,8 @@ export const BookItem = ({ title, publisher } : { title: string, publisher: stri
       </View>
       <View style={{ justifyContent: 'center', paddingRight: 5}}>
       <Card.Actions>
-        <MaterialCommunityIcons name='pencil-outline' style={styles.button} />
-        <MaterialCommunityIcons name='trash-can-outline' style={styles.button} />
+        <MaterialCommunityIcons onPress={handleEdit}  name='pencil-outline' style={styles.button} />
+        <MaterialCommunityIcons onPress={handleDelete} name='trash-can-outline' style={styles.button} />
       </Card.Actions>
       </View>
       </View>

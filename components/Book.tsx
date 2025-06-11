@@ -18,6 +18,10 @@ export const BookItem = ({ id, title, publisher } : { id?: number, title: string
 
   }
 
+  const handleBookDetail = () => {
+    
+  }
+
   return (
     <>
     <Card mode='elevated' style={styles.card}>
@@ -25,7 +29,7 @@ export const BookItem = ({ id, title, publisher } : { id?: number, title: string
       <View style={{width: 270}}>
       <Card.Content>
         <View style={styles.cardHeader}>
-          <Title style={styles.cardHeader}>{title}</Title>
+          <Title onPress={handleBookDetail} style={styles.cardHeader}>{title}</Title>
         </View>
         <Paragraph style={styles.authorText}>by {publisher}</Paragraph>
       </Card.Content>

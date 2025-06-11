@@ -4,14 +4,7 @@ import { Text, TextInput, Button } from 'react-native-paper';
 import DateTimePickerModal from 'react-native-modal-datetime-picker';
 import { useNavigation } from '@react-navigation/native';
 import { StackNavigationProp } from '@react-navigation/stack'; 
-
-export type RootStackParamList = {
-  Home: undefined;
-  Books: undefined;
-  Login: undefined;
-  Main: undefined;
-  Register: undefined;
-};
+import { RootStackParamList } from '../types';
 
 type RegisterScreenNavigationProp = StackNavigationProp<
   RootStackParamList,

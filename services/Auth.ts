@@ -1,8 +1,8 @@
 import { useQueryClient } from "@tanstack/react-query";
-import type { User } from "./ActiveUser";
 import { fetchApi } from "./Api";
 import { getValueFor, setValueFor } from "./securestorage";
 import queryClient from "./QueryClient";
+import { User } from "../types";
 
 export async function login(email: string, password: string) {
   const res = await fetchApi<{ accessToken: string; user: User }>("login", {

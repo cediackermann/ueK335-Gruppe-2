@@ -13,3 +13,20 @@ export type Publisher = {
   publisher_name: string;
   incorporation_date: string;
 };
+
+export type RootStackParamList = {
+  Home: undefined;
+  Books: undefined;
+  Login: undefined;
+  Main: undefined;
+  Register: undefined;
+  BookEdit: undefined;
+};
+
+export type User = {
+  id: string;
+  firstName: string;
+  lastName: string;
+  email: string;
+  birthdate: string;
+};

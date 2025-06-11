@@ -1,14 +1,7 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { getValueFor, setValueFor } from "./securestorage";
 import queryClient from "./QueryClient";
-
-export type User = {
-  id: string;
-  firstName: string;
-  lastName: string;
-  email: string;
-  birthdate: string;
-};
+import { User } from "../types";
 
 async function getActiveUser(): Promise<User | null> {
   try {

@@ -2,14 +2,7 @@ import React from 'react';
 import { View, StyleSheet, Image, Platform, StatusBar } from 'react-native';
 import { Text, Button, Card, Title, Paragraph } from 'react-native-paper';
 import { StackNavigationProp } from '@react-navigation/stack';
-
-export type RootStackParamList = {
-  Home: undefined;
-  Books: undefined;
-  Login: undefined;
-  Main: undefined;
-  Register: undefined;
-};
+import { RootStackParamList } from '../types';
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Home'>;
 

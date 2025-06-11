@@ -1,4 +1,4 @@
-import { useQuery, useQueryClient } from "@tanstack/react-query";
+import { useQuery } from "@tanstack/react-query";
 import { getValueFor, setValueFor } from "./securestorage";
 import queryClient from "./QueryClient";
 import { User } from "../types";

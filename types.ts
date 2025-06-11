@@ -30,10 +30,3 @@ export type User = {
   email: string;
   birthdate: string;
 };
-
-export enum SortOption {
-  Author = 'Author',
-  Bookname = 'Bookname',
-  PageAsc = 'Pages ascending',
-  PagesDesc = 'Pages descending'
-}

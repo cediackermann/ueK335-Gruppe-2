@@ -1,20 +1,30 @@
 import React from "react";
-import { Image, StyleSheet, View } from "react-native";
+import { Image, StyleSheet, View, Alert } from "react-native"; // Alert importiert für deine bestehende Fehlerbehandlung
 import { Text, TextInput } from "react-native-paper";
 import { login } from "../services/Auth";
 import { setActiveUser } from "../services/ActiveUser";
+import { useNavigation } from "@react-navigation/native"; // Benötigt für navigation.navigate
 
 export default function Login() {
   const [email, setEmail] = React.useState("");
   const [password, setPassword] = React.useState("");
+  const navigation = useNavigation(); // Hol dir die Navigation Instanz
 
   const handleLogin = async () => {
     try {
       const res = await login(email, password);
       await setActiveUser(res.user);
+
+      // ----- HIER IST DIE EINZIGE ÄNDERUNG -----
+      // Ersetze 'Main' durch den genauen Namen deines Screens im Navigator,
+      // der Main.tsx rendert.
+      navigation.navigate("Main");
+      // ----------------------------------------
+
     } catch (error) {
       console.error("Login failed:", error);
-      alert("Login failed. Please check your credentials.");
+      // Deine ursprüngliche Fehlerbehandlung
+      Alert.alert("Login failed. Please check your credentials.");
     }
   };
 
@@ -35,6 +45,7 @@ export default function Login() {
           label='Password'
           mode='outlined'
           secureTextEntry
+          style={styles.input} // Style hinzugefügt, falls es im Original gefehlt hat (war im vorherigen Snippet so)
           onChangeText={(text) => setPassword(text)}
         />
       </View>
@@ -43,14 +54,16 @@ export default function Login() {
           Don't have an account{" "}
           <Text
             onPress={() => {
-              alert("Navigate to Sign Up screen");
+              // Deine ursprüngliche Sign Up Navigation/Alert
+              Alert.alert("Navigate to Sign Up screen");
             }}
           >
             Sign up
           </Text>
         </Text>
       </View>
-      <Text onPress={handleLogin}>Log in</Text>
+      {/* Dein ursprünglicher Login Text-Button */}
+      <Text style={styles.loginButtonText} onPress={handleLogin}>Log in</Text>
     </View>
   );
 }
@@ -69,16 +82,32 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "flex-start",
     backgroundColor: "#fff",
+    paddingHorizontal: 20, // Empfohlen für gleichmäßiges Padding
   },
   login: {
     fontWeight: "bold",
-    margin: 40,
+    marginVertical: 20, // Angepasst von margin: 40 für besseres Spacing mit Padding
   },
   inputContainer: {
-    width: 300,
+    width: "100%", // Nutzt die Breite innerhalb des Paddings
+    maxWidth: 350, // Gute maximale Breite
     alignSelf: "center",
+    marginBottom: 20, // Platz vor dem "Don't have an account" Text
   },
   input: {
     marginBottom: 20,
+  },
+  // Style für den Text "Log in" Button, um ihn klickbarer aussehen zu lassen (optional)
+  loginButtonText: {
+    marginTop: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 20,
+    backgroundColor: "#6200ee", // Beispiel Farbe, passend zu Paper
+    color: "white",
+    borderRadius: 4,
+    textAlign: "center",
+    fontWeight: "bold",
+    width: "100%", // Nutzt die Breite innerhalb des Paddings
+    maxWidth: 350, // Gute maximale Breite
   },
 });

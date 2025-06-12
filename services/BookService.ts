@@ -33,6 +33,19 @@ export async function getPublisher() {
   return [];
 }
 
+export async function deleteBook(id: number) {
+  try {
+    const res = await fetchApi<{}>(`book/${id}`, {
+      method: "DELETE",
+    });
+    if (res) {
+      return res;
+    }
+  } catch (error) {
+    console.error("error deleting book:", error);
+  }
+}
+
 export async function addBook(book: BookFormData) {
   try {
     const res = await fetchApi<Book>("book", {

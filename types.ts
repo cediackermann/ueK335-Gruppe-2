@@ -40,3 +40,10 @@ export type Language = {
   language_code: string;
   language_name: string;
 };
+
+export enum SortOption {
+  Publisher = "Publisher",
+  Bookname = "Bookname",
+  PageAsc = "Pages ascending",
+  PagesDesc = "Pages descending",
+}

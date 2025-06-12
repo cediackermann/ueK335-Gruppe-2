@@ -54,7 +54,7 @@ const BookForm: React.FC<SubmitFormProps> = ({ onSubmit }) => {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            keyboardType='email-address'
+            keyboardType='default'
             autoCapitalize='none'
             mode='outlined'
             outlineColor='#0A2543'

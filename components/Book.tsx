@@ -3,10 +3,10 @@ import { View, StyleSheet } from 'react-native'
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Button, Card, IconButton, Paragraph, Text, Title } from 'react-native-paper'
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from '../types';
+import { MainTabParamList } from '../types';
 import { useNavigation } from '@react-navigation/native';
 
-type BookItemScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Books'>;
+type BookItemScreenNavigationProp = StackNavigationProp<MainTabParamList, 'Books'>;
 
 export const BookItem = ({ id, title, publisher } : { id?: number, title: string, publisher: string }) => {
   const navigation = useNavigation<BookItemScreenNavigationProp>();

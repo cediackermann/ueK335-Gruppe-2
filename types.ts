@@ -1,3 +1,16 @@
+export type MainTabParamList = {
+  Books: undefined;
+  AddBook: undefined;
+  Profile: undefined;
+};
+
+export type RootStackParamList = {
+  Auth: undefined;
+  Home: undefined;
+  Main: { screen?: keyof MainTabParamList; params?: any };
+  BookEdit?: { bookId: number };
+};
+
 export type Book = {
   id: number;
   title: string;
@@ -12,15 +25,6 @@ export type Publisher = {
   id: number;
   publisher_name: string;
   incorporation_date: string;
-};
-
-export type RootStackParamList = {
-  Home: undefined;
-  Books: undefined;
-  Login: undefined;
-  Main: undefined;
-  Register: undefined;
-  BookEdit: undefined;
 };
 
 export type User = {

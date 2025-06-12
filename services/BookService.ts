@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Book, Publisher } from "../types";
 import { fetchApi } from "./Api";
+import { BookFormData } from "../validation/schema";
 
 export async function getBooks() {
   try {
@@ -30,6 +31,21 @@ export async function getPublisher() {
     console.error("Error fetching publishers:", error);
   }
   return [];
+}
+
+export async function addBook(book: BookFormData) {
+  try {
+    const res = await fetchApi<Book>("book", {
+      method: "POST",
+      body: JSON.stringify(book),
+    });
+    if (res) {
+      return res;
+    }
+  } catch (error) {
+    console.error("Error adding book:", error);
+  }
+  return null;
 }
 
 export function useBooks() {

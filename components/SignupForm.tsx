@@ -94,6 +94,9 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
             onChangeText={onChange}
             value={value}
             autoCapitalize='words'
+            outlineColor='#0A2543'
+            activeOutlineColor='#0A2543'
+            mode='outlined'
           />
         )}
       />
@@ -110,7 +113,9 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
             onBlur={onBlur}
             onChangeText={onChange}
             value={value}
-            autoCapitalize='words'
+            outlineColor='#0A2543'
+            activeOutlineColor='#0A2543'
+            mode='outlined'
           />
         )}
       />
@@ -132,9 +137,11 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
                   editable={false}
                   placeholder='05/06/2025'
                   right={<TextInput.Icon icon='calendar' />}
-                  theme={{ roundness: 8 }}
                   pointerEvents='none'
                   onBlur={onBlur}
+                  outlineColor='#0A2543'
+                  activeOutlineColor='#0A2543'
+                  mode='outlined'
                 />
               </View>
             </TouchableOpacity>
@@ -168,6 +175,9 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
             value={value}
             keyboardType='email-address'
             autoCapitalize='none'
+            outlineColor='#0A2543'
+            activeOutlineColor='#0A2543'
+            mode='outlined'
           />
         )}
       />
@@ -186,6 +196,9 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
             onChangeText={onChange}
             value={value}
             secureTextEntry
+            outlineColor='#0A2543'
+            activeOutlineColor='#0A2543'
+            mode='outlined'
           />
         )}
       />
@@ -204,6 +217,9 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
             onChangeText={onChange}
             value={value}
             secureTextEntry
+            outlineColor='#0A2543'
+            activeOutlineColor='#0A2543'
+            mode='outlined'
           />
         )}
       />
@@ -229,12 +245,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   input: {
-    height: 45,
-    borderColor: "#ccc",
-    borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
-    borderRadius: 5,
     backgroundColor: "#fff",
   },
   inputError: { borderColor: "red" },

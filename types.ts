@@ -32,5 +32,11 @@ export type User = {
   firstName: string;
   lastName: string;
   email: string;
-  birthdate: string; // Format: 'YYYY-MM-DD'
+  birthdate: string;
+};
+
+export type Language = {
+  id: number;
+  language_code: string;
+  language_name: string;
 };

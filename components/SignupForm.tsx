@@ -210,15 +210,12 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
       {errors.confirmPassword && (
         <Text style={styles.errorText}>{errors.confirmPassword.message}</Text>
       )}
-
-      <View style={styles.button}>
-        <Button
-          title='Sign Up'
-          onPress={handleSubmit(handleSignup, onError)}
-          disabled={!isValid}
-          color='#0A2543'
-        />
-      </View>
+      <Button
+        title='Sign Up'
+        onPress={handleSubmit(handleSignup, onError)}
+        disabled={!isValid}
+        color='#0A2543'
+      />
     </View>
   );
 };
@@ -242,9 +239,6 @@ const styles = StyleSheet.create({
   },
   inputError: { borderColor: "red" },
   errorText: { color: "red", marginBottom: 10, fontSize: 12 },
-  button: {
-    backgroundColor: "#0A2543",
-  },
 });
 
 export default SignupForm;

@@ -42,7 +42,7 @@ export type Language = {
 };
 
 export enum SortOption {
-  Author = "Author",
+  Publisher = "Publisher",
   Bookname = "Bookname",
   PageAsc = "Pages ascending",
   PagesDesc = "Pages descending",

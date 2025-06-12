@@ -30,3 +30,9 @@ export type User = {
   email: string;
   birthdate: string;
 };
+
+export type Language = {
+  id: number;
+  language_code: string;
+  language_name: string;
+};

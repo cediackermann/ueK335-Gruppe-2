@@ -1,8 +1,9 @@
 import { useActiveUser } from "./services/ActiveUser";
-import Main from "./pages/Main";
 import Auth from "./pages/Auth";
 
 import React from "react";
+import Home from "./pages/Home";
+import Main from "./pages/Main";
 
 export default function Router() {
   const activeUser = useActiveUser();

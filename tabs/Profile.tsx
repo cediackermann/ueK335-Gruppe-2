@@ -10,6 +10,7 @@ export default function Profile() {
     <View>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
         <Image source={require("../assets/logo.png")} style={styles.logo} />
+        <Text style={styles.title}>User Dashboard</Text>
         <View style={styles.formContainer}>
           {activeUser.data &&
             Object.entries(activeUser.data).map(([key, value]) => (
@@ -56,5 +57,11 @@ const styles = StyleSheet.create({
   },
   button: {
     backgroundColor: "#0A2543",
+  },
+  title: {
+    fontSize: 28,
+    fontWeight: "bold",
+    textAlign: "center",
+    marginTop: 30,
   },
 });

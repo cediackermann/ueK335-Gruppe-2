@@ -32,6 +32,17 @@ export async function getPublisher() {
   return [];
 }
 
+//give whole book as parameter but only take id ({id}: Book)
+export async function deleteBook({ id }: { id: number }) {
+  try {
+    const res = await fetchApi<{}>(`book/${id}`, {
+      method: "DELETE",
+    })
+  } catch (error) {
+    console.error("error deleting book:", error)
+  }
+}
+
 export function useBooks() {
   return useQuery({
     queryKey: ["books"],

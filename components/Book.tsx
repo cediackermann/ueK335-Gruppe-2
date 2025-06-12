@@ -5,17 +5,19 @@ import { Button, Card, IconButton, Paragraph, Text, Title } from 'react-native-p
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from '../types';
 import { useNavigation } from '@react-navigation/native';
+import { deleteBook } from '../services/BookService';
 
 type BookItemScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Books'>;
 
-export const BookItem = ({ id, title, publisher } : { id?: number, title: string, publisher: string }) => {
+export const BookItem = ({ id, title, publisher } : { id: number, title: string, publisher: string }) => {
   const navigation = useNavigation<BookItemScreenNavigationProp>();
   const handleEdit = () => {
 
   }
 
   const handleDelete = () => {
-
+    deleteBook({ id });
+    navigation.navigate('Books');
   }
 
   const handleBookDetail = () => {
@@ -26,7 +28,7 @@ export const BookItem = ({ id, title, publisher } : { id?: number, title: string
     <>
     <Card mode='elevated' style={styles.card}>
       <View style={{width:'100%', flexDirection:'row', justifyContent:'space-between'}}>
-      <View style={{width: 270}}>
+      <View style={{width: '70%'}}>
       <Card.Content>
         <View style={styles.cardHeader}>
           <Title onPress={handleBookDetail} style={styles.cardHeader}>{title}</Title>

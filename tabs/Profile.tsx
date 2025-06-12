@@ -1,18 +1,60 @@
-import { View } from "react-native";
-import { Button, Text } from "react-native-paper";
+import { Image, ScrollView, StyleSheet, View } from "react-native";
 import { logout } from "../services/Auth";
+import { Button, Card, Text, TextInput } from "react-native-paper";
+import { useActiveUser } from "../services/ActiveUser";
 
 export default function Profile() {
+  const activeUser = useActiveUser();
+
   return (
     <View>
-      <Text variant='headlineLarge'>Profile</Text>
-      <Button
-        onPress={() => {
-          logout();
-        }}
-      >
-        Logout
-      </Button>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        <Image source={require("../assets/logo.png")} style={styles.logo} />
+        <View style={styles.formContainer}>
+          {activeUser.data &&
+            Object.entries(activeUser.data).map(([key, value]) => (
+              <TextInput
+                key={key}
+                label={key}
+                value={String(value)}
+                disabled={true}
+                style={styles.input}
+                mode='outlined'
+              ></TextInput>
+            ))}
+        </View>
+        <Button
+          onPress={() => {
+            logout();
+          }}
+          mode='contained'
+          contentStyle={{ width: "100%" }}
+          style={styles.button}
+        >
+          Logout
+        </Button>
+      </ScrollView>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  formContainer: { width: "100%", padding: 20 },
+  scrollContainer: {
+    flexGrow: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  logo: {
+    width: 200,
+    height: 200,
+    marginBottom: 30,
+    marginTop: 20,
+  },
+  input: {
+    paddingHorizontal: 10,
+  },
+  button: {
+    backgroundColor: "#0A2543",
+  },
+});

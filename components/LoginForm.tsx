@@ -76,11 +76,13 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
         <Text style={styles.errorText}>{errors.password.message}</Text>
       )}
 
-      <Button
-        title='Login'
-        onPress={handleSubmit(handleLogin, onError)}
-        disabled={!isValid}
-      />
+      <View style={styles.button}>
+        <Button
+          title='Login'
+          onPress={handleSubmit(handleLogin, onError)}
+          disabled={!isValid}
+        />
+      </View>
     </View>
   );
 };
@@ -104,6 +106,9 @@ const styles = StyleSheet.create({
   },
   inputError: { borderColor: "red" },
   errorText: { color: "red", marginBottom: 10, fontSize: 12 },
+  button: {
+    backgroundColor: "#0A2543",
+  },
 });
 
 export default LoginForm;

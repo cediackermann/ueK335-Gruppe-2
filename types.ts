@@ -17,7 +17,7 @@ export type Publisher = {
 export type RootStackParamList = {
   Home: undefined;
   Books: undefined;
-  Login: undefined;
+  Auth: undefined;
   Main: undefined;
   Register: undefined;
   BookEdit: undefined;

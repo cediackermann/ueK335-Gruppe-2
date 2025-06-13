@@ -6,6 +6,11 @@ import { useNavigation, useRoute, RouteProp } from "@react-navigation/native";
 import { NativeStackNavigationProp } from "@react-navigation/native-stack";
 import { RootStackParamList } from "../types";
 
+/**
+ * BookDetail component displays the details of a single book in a read-only form.
+ * It retrieves the book ID from the navigation parameters.
+ * @returns The book detail screen component.
+ */
 export default function BookDetail() {
   const navigation =
     useNavigation<NativeStackNavigationProp<RootStackParamList>>();

@@ -3,6 +3,10 @@ import { logout } from "../services/Auth";
 import { Button, Card, Text, TextInput } from "react-native-paper";
 import { useActiveUser } from "../services/ActiveUser";
 
+/**
+ * Profile component displays the user's dashboard with their information and a logout button.
+ * It fetches the active user's data and displays it in disabled TextInput fields.
+ */
 export default function Profile() {
   const activeUser = useActiveUser();
 

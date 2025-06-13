@@ -13,6 +13,10 @@ import { LoginFormData, SignupApiPayload } from "../validation/schema";
 import { login, signUp } from "../services/Auth";
 import { Image } from "react-native";
 
+/**
+ * Auth component handles user authentication, allowing users to switch between login and signup forms.
+ * @returns The authentication screen component.
+ */
 const Auth: React.FC = () => {
   const [isLoginView, setIsLoginView] = useState<boolean>(true);
 

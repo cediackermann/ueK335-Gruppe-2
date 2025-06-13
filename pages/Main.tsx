@@ -13,7 +13,13 @@ import { MainTabParamList } from "../types";
 
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
-export default function MainTabs() {
+/**
+ * MainTabs component sets up the bottom tab navigation for the application.
+ * It includes tabs for Books, Add Book, and Profile, each with its respective icon and label.
+ *
+ * @returns The rendered tab navigator.
+ */
+export default function MainTabs(): React.JSX.Element {
   return (
     <Tab.Navigator
       initialRouteName='Books'

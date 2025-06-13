@@ -4,7 +4,11 @@ import { fetchApi } from "./Api";
 import { BookFormData } from "../validation/schema";
 import queryClient from "./QueryClient";
 
-export async function getBooks() {
+/**
+ * Fetches all books from the API.
+ * @returns A promise that resolves with an array of books.
+ */
+export async function getBooks(): Promise<Book[]> {
   try {
     const res = await fetchApi<Book[]>("book", {
       method: "GET",
@@ -19,7 +23,11 @@ export async function getBooks() {
   return [];
 }
 
-export async function getPublisher() {
+/**
+ * Fetches all publishers from the API.
+ * @returns A promise that resolves with an array of publishers.
+ */
+export async function getPublisher(): Promise<Publisher[]> {
   try {
     const res = await fetchApi<Publisher[]>("publisher", {
       method: "GET",
@@ -34,7 +42,17 @@ export async function getPublisher() {
   return [];
 }
 
-export async function getBookById({ id }: { id: number }) {
+/**
+ * Fetches a book by its ID.
+ * @param {object} params - The parameters object.
+ * @param {number} params.id - The ID of the book to fetch.
+ * @returns A promise that resolves with the book data or null if an error occurs.
+ */
+export async function getBookById({
+  id,
+}: {
+  id: number;
+}): Promise<Book | null> {
   try {
     const res = await fetchApi<Book>(`book/${id}`, {
       method: "GET",
@@ -48,7 +66,13 @@ export async function getBookById({ id }: { id: number }) {
   return null;
 }
 
-async function performDeleteBook(id: number) {
+/**
+ * Performs the deletion of a book by its ID.
+ * @param {number} id - The ID of the book to delete.
+ * @returns A promise that resolves when the book is successfully deleted.
+ * @throws {Error} If the book deletion fails.
+ */
+async function performDeleteBook(id: number): Promise<{}> {
   const res = await fetchApi<{}>(`book/${id}`, {
     method: "DELETE",
   });
@@ -58,6 +82,9 @@ async function performDeleteBook(id: number) {
   return res;
 }
 
+/**
+ * Custom hook for deleting a book.
+ */
 export function useDeleteBook() {
   return useMutation({
     mutationFn: performDeleteBook,
@@ -70,7 +97,12 @@ export function useDeleteBook() {
   });
 }
 
-export async function addBook(book: BookFormData) {
+/**
+ * Adds a new book to the API.
+ * @param {BookFormData} book - The book data to add.
+ * @returns A promise that resolves with the added book data or null if an error occurs.
+ */
+export async function addBook(book: BookFormData): Promise<Book | null> {
   try {
     const res = await fetchApi<Book>("book", {
       method: "POST",
@@ -85,7 +117,16 @@ export async function addBook(book: BookFormData) {
   return null;
 }
 
-export async function editBook(book: BookFormData, id: number) {
+/**
+ * Edits an existing book by its ID.
+ * @param {BookFormData} book - The updated book data.
+ * @param {number} id - The ID of the book to edit.
+ * @returns A promise that resolves with the updated book data or null if an error occurs.
+ */
+export async function editBook(
+  book: BookFormData,
+  id: number
+): Promise<Book | null> {
   try {
     const res = await fetchApi<Book>(`book/${id}`, {
       method: "PUT",
@@ -100,6 +141,9 @@ export async function editBook(book: BookFormData, id: number) {
   return null;
 }
 
+/**
+ * Custom hook for fetching books.
+ */
 export function useBooks() {
   return useQuery({
     queryKey: ["books"],
@@ -107,6 +151,9 @@ export function useBooks() {
   });
 }
 
+/**
+ * Custom hook for fetching publishers.
+ */
 export function usePublishers() {
   return useQuery({
     queryKey: ["publishers"],

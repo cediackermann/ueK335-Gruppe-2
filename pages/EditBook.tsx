@@ -14,6 +14,11 @@ import {
 import { RootStackParamList } from "../types";
 import queryClient from "../services/QueryClient";
 
+/**
+ * EditBook component for editing an existing book.
+ * It retrieves the book ID from the navigation parameters and handles the submission of the edited book data.
+ * @returns The edit book screen component.
+ */
 export default function EditBook() {
   const route = useRoute<RouteProp<RootStackParamList, "BookEdit">>();
   const navigation = useNavigation<NavigationProp<RootStackParamList>>();

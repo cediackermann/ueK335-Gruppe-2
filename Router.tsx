@@ -11,6 +11,11 @@ import { ActivityIndicator, View, StyleSheet } from "react-native";
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
 
+/**
+ * Main application router component.
+ * Handles navigation stack based on user authentication status.
+ * @returns The navigation container with appropriate screens.
+ */
 export default function Router() {
   const activeUser = useActiveUser();
 

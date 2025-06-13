@@ -3,6 +3,10 @@ import { getValueFor, setValueFor } from "./securestorage";
 import queryClient from "./QueryClient";
 import { User } from "../types";
 
+/**
+ * Retrieves the active user from secure storage.
+ * @returns A Promise that resolves to the active user (User) or null if not found or an error occurs.
+ */
 async function getActiveUser(): Promise<User | null> {
   try {
     const user = await getValueFor("activeUser");
@@ -17,6 +21,11 @@ async function getActiveUser(): Promise<User | null> {
   }
 }
 
+/**
+ * Sets the active user in secure storage and invalidates the 'activeUser' query.
+ * @param user The user object to set as the active user.
+ * @returns A Promise that resolves when the operation is complete.
+ */
 export async function setActiveUser(user: User): Promise<void> {
   try {
     await setValueFor("activeUser", JSON.stringify(user));
@@ -26,6 +35,10 @@ export async function setActiveUser(user: User): Promise<void> {
   }
 }
 
+/**
+ * A React Query hook to access the active user.
+ * @returns The result of the useQuery hook for the active user.
+ */
 export function useActiveUser() {
   return useQuery({
     queryKey: ["activeUser"],

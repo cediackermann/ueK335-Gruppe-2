@@ -1,5 +1,10 @@
+export type BooksStackParamList = {
+  BooksList: undefined;
+  BookDetails: { book: Book };
+};
+
 export type MainTabParamList = {
-  Books: undefined;
+  BooksStack: undefined;
   AddBook: undefined;
   Profile: undefined;
 };
@@ -8,7 +13,6 @@ export type RootStackParamList = {
   Auth: undefined;
   Home: undefined;
   Main: { screen?: keyof MainTabParamList; params?: any };
-  BookEdit?: { bookId: number };
 };
 
 export type Book = {

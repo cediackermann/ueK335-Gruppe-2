@@ -1,9 +1,14 @@
+// pages/Main.tsx
 import React from "react";
-import { createBottomTabNavigator, BottomTabBarProps } from "@react-navigation/bottom-tabs";
-import { BottomNavigation } from "react-native-paper";
+import {
+  createBottomTabNavigator,
+  BottomTabBarProps,
+} from "@react-navigation/bottom-tabs";
+import { BottomNavigation, MD3DarkTheme, MD3LightTheme, useTheme } from "react-native-paper";
+import { StyleSheet } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { CommonActions, RouteProp } from "@react-navigation/native";
-import Books from "../tabs/Books";
+import { CommonActions, RouteProp, NavigationState } from "@react-navigation/native";
+import BooksNavigator from "../tabs/BooksNavigator";
 import AddBook from "../tabs/AddBook";
 import Profile from "../tabs/Profile";
 import { MainTabParamList } from "../types";
@@ -11,16 +16,32 @@ import { MainTabParamList } from "../types";
 const Tab = createBottomTabNavigator<MainTabParamList>();
 
 export default function MainTabs() {
+  const theme = useTheme(); // Aktuelles Theme holen
+
   return (
     <Tab.Navigator
-      initialRouteName='Books' // Innerhalb des Tab-Navigators ist "Books" der erste Tab
+      initialRouteName="BooksStack"
       screenOptions={{
-        headerShown: false,
+        headerShown: false, 
       }}
-      tabBar={({ navigation, state, descriptors, insets }: BottomTabBarProps) => (
+      tabBar={({
+        navigation,
+        state,
+        descriptors,
+        insets,
+      }: BottomTabBarProps) => (
         <BottomNavigation.Bar
-          navigationState={state}
+          navigationState={state as NavigationState<MainTabParamList>}
           safeAreaInsets={insets}
+          activeColor="#0A2543" 
+          inactiveColor="#757575" 
+          // Verwende Theme-Farben für den Hintergrund, um Dark Mode zu unterstützen
+          // oder setze eine explizite Farbe für helles Design
+          style={{ 
+            backgroundColor: theme.colors.surface, // Passt sich an Hell/Dunkel an
+            borderTopWidth: StyleSheet.hairlineWidth, // Subtile Linie oben
+            borderTopColor: theme.colors.outlineVariant, // Farbe für die Linie
+          }} 
           onTabPress={({ route, preventDefault }) => {
             const event = navigation.emit({
               type: "tabPress",
@@ -38,16 +59,35 @@ export default function MainTabs() {
           }}
           renderIcon={({ route, focused, color }) => {
             const { options } = descriptors[route.key];
-            return options.tabBarIcon
-              ? options.tabBarIcon({ focused, color, size: 24 })
-              : null;
-          }}
-          getLabelText={({ route }: { route: RouteProp<MainTabParamList, keyof MainTabParamList> }) => {
-            const { options } = descriptors[route.key];
-            if (typeof options.tabBarLabel === 'string') {
-              return options.tabBarLabel;
+            let iconName: React.ComponentProps<typeof MaterialCommunityIcons>['name'] = 'help-circle'; // Default Icon
+            let iconSize = focused ? 26 : 24;
+
+            if (route.name === 'BooksStack') {
+              iconName = focused ? 'book-open-page-variant' : 'book-open-page-variant-outline';
+            } else if (route.name === 'AddBook') {
+              iconName = focused ? 'plus-circle' : 'plus-circle-outline';
+            } else if (route.name === 'Profile') {
+              iconName = focused ? 'account-circle' : 'account-circle-outline';
             }
-            if (typeof options.title === 'string') {
+            
+            if (options.tabBarIcon) { // Falls spezifisches Icon in options definiert ist
+                 return options.tabBarIcon({ focused, color, size: iconSize });
+            }
+            return <MaterialCommunityIcons name={iconName} color={color} size={iconSize} />;
+          }}
+          getLabelText={({
+            route,
+          }: {
+            route: RouteProp<MainTabParamList, keyof MainTabParamList>;
+          }) => {
+            const { options } = descriptors[route.key];
+            if (route.name === "BooksStack") {
+              return options.tabBarLabel !== undefined ? String(options.tabBarLabel) : "Books";
+            }
+            if (options.tabBarLabel !== undefined) {
+              return String(options.tabBarLabel);
+            }
+            if (options.title !== undefined) {
               return options.title;
             }
             return route.name;
@@ -56,45 +96,27 @@ export default function MainTabs() {
       )}
     >
       <Tab.Screen
-        name='Books'
-        component={Books}
+        name="BooksStack"
+        component={BooksNavigator}
         options={{
           tabBarLabel: "Books",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name='book-open-page-variant'
-              color={color}
-              size={size || 26}
-            />
-          ),
+          // Icon wird jetzt in renderIcon oben dynamisch gesetzt
         }}
       />
       <Tab.Screen
-        name='AddBook'
+        name="AddBook"
         component={AddBook}
         options={{
-          tabBarLabel: "Add Book",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name='plus-circle'
-              color={color}
-              size={size || 26}
-            />
-          ),
+          tabBarLabel: "Add book", 
+          // Icon wird jetzt in renderIcon oben dynamisch gesetzt
         }}
       />
       <Tab.Screen
-        name='Profile'
+        name="Profile"
         component={Profile}
         options={{
           tabBarLabel: "Profile",
-          tabBarIcon: ({ color, size }) => (
-            <MaterialCommunityIcons
-              name='account-circle'
-              color={color}
-              size={size || 26}
-            />
-          ),
+          // Icon wird jetzt in renderIcon oben dynamisch gesetzt
         }}
       />
     </Tab.Navigator>

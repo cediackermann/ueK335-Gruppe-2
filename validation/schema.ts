@@ -1,4 +1,3 @@
-// src/validation/schemas.ts
 import { z } from "zod";
 
 export const loginSchema = z.object({
@@ -28,6 +27,7 @@ export const signupSchema = z
     birthdate: z
       .string({ required_error: "Birthdate is required" })
       .nonempty("Birthdate is required")
+      .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format. Use YYYY-MM-DD")
       .refine((date) => !isNaN(Date.parse(date)), {
         message: "Invalid date format",
       }),
@@ -57,24 +57,26 @@ export const bookFormSchema = z.object({
     .nonempty("Title is required")
     .min(2, "Title must be at least 2 characters"),
   isbn13: z
-    .number({ required_error: "ISBN is required" })
-    .min(10000000000, "Invalid ISBN format")
-    .max(99999999999, "Invalid ISBN format"),
+    .string({ required_error: "ISBN is required" })
+    .length(13, "ISBN must be 13 digits")
+    .regex(/^[0-9]+$/, "ISBN must only contain digits"),
   num_pages: z
     .number({
       required_error: "Page number is required",
+      invalid_type_error: "Page number must be a number",
     })
     .int("Page number must be an integer")
     .positive("Page number must be positive"),
-  publisher_id: z.number({
-    required_error: "Publisher is required",
-  }),
-  language_id: z.number({
-    required_error: "Language is required",
-  }),
+  publisher_id: z
+    .number({ required_error: "Publisher is required" })
+    .positive("Please select a publisher"),
+  language_id: z
+    .number({ required_error: "Language is required" })
+    .positive("Please select a language"),
   publication_date: z
     .string({ required_error: "Publication date is required" })
     .nonempty("Publication date is required")
+    .regex(/^\d{4}-\d{2}-\d{2}$/, "Invalid date format. Use YYYY-MM-DD")
     .refine((date) => !isNaN(Date.parse(date)), {
       message: "Invalid date format",
     }),

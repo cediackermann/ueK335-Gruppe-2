@@ -163,6 +163,14 @@ export default function Books() {
           data={filteredBooks}
           keyExtractor={(item) => String(item.id)}
           renderItem={renderItem}
+          getItemLayout={(data, index) => ({
+            length: 100,
+            offset: 100 * index,
+            index,
+          })}
+          initialNumToRender={10}
+          maxToRenderPerBatch={5}
+          windowSize={21}
         />
       )}
 

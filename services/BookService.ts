@@ -1,7 +1,8 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, useMutation } from "@tanstack/react-query";
 import { Book, Publisher } from "../types";
 import { fetchApi } from "./Api";
 import { BookFormData } from "../validation/schema";
+import queryClient from "./QueryClient";
 
 export async function getBooks() {
   try {
@@ -33,7 +34,7 @@ export async function getPublisher() {
   return [];
 }
 
-export async function getBookById({ id}: {id: number}) {
+export async function getBookById({ id }: { id: number }) {
   try {
     const res = await fetchApi<Book>(`book/${id}`, {
       method: "GET",
@@ -47,19 +48,27 @@ export async function getBookById({ id}: {id: number}) {
   return null;
 }
 
-export async function deleteBook(id: number) {
-  try {
-    const res = await fetchApi<{}>(`book/${id}`, {
-      method: "DELETE",
-    })
-    if (res) {
-      return res;
-    }
-  } catch (error) {
-    console.error("error deleting book:", error);
+async function performDeleteBook(id: number) {
+  const res = await fetchApi<{}>(`book/${id}`, {
+    method: "DELETE",
+  });
+  if (!res) {
+    throw new Error("Failed to delete book");
   }
+  return res;
 }
 
+export function useDeleteBook() {
+  return useMutation({
+    mutationFn: performDeleteBook,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["books"] });
+    },
+    onError: (error) => {
+      console.error("Error deleting book:", error);
+    },
+  });
+}
 
 export async function addBook(book: BookFormData) {
   try {

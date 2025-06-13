@@ -7,14 +7,14 @@ import {
   StatusBar,
   ActivityIndicator,
 } from "react-native";
-import { Text, Button, Card, Title, Paragraph } from "react-native-paper";
+import { Text, Button } from "react-native-paper";
 import { StackNavigationProp } from "@react-navigation/stack";
 import {
   RootStackParamList,
   Book as BookType,
   Publisher as PublisherType,
-} from "../types"; // Stelle sicher, dass der Pfad korrekt ist
-import { useBooks, usePublishers } from "../services/BookService"; // Stelle sicher, dass der Pfad korrekt ist
+} from "../types";
+import { useBooks, usePublishers } from "../services/BookService";
 import { BookItem } from "../components/BookItem";
 
 type HomeScreenNavigationProp = StackNavigationProp<RootStackParamList, "Home">;
@@ -37,17 +37,16 @@ const Home: React.FC<Props> = ({ navigation }) => {
 
   const [todaysBook, setTodaysBook] = useState<{
     bookname: string;
-    author: string; // In deinem Fall der Publisher Name
+    author: string;
     pages: string;
   } | null>(null);
+  const [isNavigating, setIsNavigating] = useState(false);
 
   useEffect(() => {
     if (booksData && booksData.length > 0 && publishersData) {
-      // Wähle ein zufälliges Buch aus
       const randomIndex = Math.floor(Math.random() * booksData.length);
       const randomBook: BookType = booksData[randomIndex];
 
-      // Finde den zugehörigen Publisher
       const publisher: PublisherType | undefined = publishersData.find(
         (p) => p.id === randomBook.publisher_id
       );
@@ -55,13 +54,17 @@ const Home: React.FC<Props> = ({ navigation }) => {
       setTodaysBook({
         bookname: randomBook.title,
         author: publisher?.publisher_name || "Unknown Publisher",
-        pages: randomBook.num_pages.toString(), // num_pages ist eine Zahl, konvertiere sie zu String
+        pages: randomBook.num_pages.toString(),
       });
     }
-  }, [booksData, publishersData]); // Abhängigkeiten: Effekt neu ausführen, wenn sich Bücher oder Verlage ändern
+  }, [booksData, publishersData]);
 
   const handleEnterPress = () => {
-    navigation.navigate("Main", { screen: "Books" });
+    setIsNavigating(true);
+    setTimeout(() => {
+      navigation.navigate("Main", { screen: "Books" });
+      setIsNavigating(false);
+    }, 500);
   };
 
   const renderBookRecommendation = () => {
@@ -128,8 +131,13 @@ const Home: React.FC<Props> = ({ navigation }) => {
           labelStyle={styles.buttonLabel}
           contentStyle={styles.buttonContent}
           uppercase={true}
+          disabled={isNavigating} // Disable button while navigating
         >
-          ENTER
+          {isNavigating ? (
+            <ActivityIndicator size='small' color='#FFFFFF' />
+          ) : (
+            "ENTER"
+          )}
         </Button>
       </View>
     </View>
@@ -137,7 +145,6 @@ const Home: React.FC<Props> = ({ navigation }) => {
 };
 
 const styles = StyleSheet.create({
-  // ELEGANT STYLES FORMATIERT
   pageContainer: {
     flex: 1,
     backgroundColor: "#F5F3F9",
@@ -177,28 +184,6 @@ const styles = StyleSheet.create({
     textAlign: "center",
     fontSize: 16,
   },
-  card: {
-    width: "100%",
-    maxWidth: 350,
-    backgroundColor: "#E8E5EE",
-    elevation: 3,
-    borderRadius: 12,
-    paddingVertical: 5,
-  },
-  cardHeader: {
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    marginBottom: 3,
-  },
-  bookName: {
-    fontSize: 17,
-    fontWeight: "600",
-    color: "#0A2543",
-    flexShrink: 1,
-  },
-  authorText: { fontSize: 15, color: "#333", marginTop: 2 },
-  pagesText: { fontSize: 13, color: "#333", marginLeft: 8 },
   footerContainer: { width: "100%", alignItems: "center" },
   button: {
     backgroundColor: "#0A2543",

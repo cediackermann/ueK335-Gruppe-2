@@ -10,7 +10,7 @@ import { editBook } from '../services/BookService';
 
 export default function EditBook({ id }: {id: number}) {
   const mutation = useMutation({
-    mutationFn: (data: BookFormData) => editBook(data),
+    mutationFn: (data: BookFormData) => editBook(data, id),
     onSuccess: () => {
       Alert.alert("Success", "Book edited successfully!");
     },

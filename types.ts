@@ -1,3 +1,16 @@
+export type MainTabParamList = {
+  Books: undefined;
+  AddBook: undefined;
+  Profile: undefined;
+};
+
+export type RootStackParamList = {
+  Auth: undefined;
+  Home: undefined;
+  Main: { screen?: keyof MainTabParamList; params?: any };
+  BookEdit?: { bookId: number };
+};
+
 export type Book = {
   id: number;
   title: string;
@@ -14,15 +27,6 @@ export type Publisher = {
   incorporation_date: string;
 };
 
-export type RootStackParamList = {
-  Home: undefined;
-  Books: undefined;
-  Login: undefined;
-  Main: undefined;
-  Register: undefined;
-  BookEdit: undefined;
-};
-
 export type User = {
   id: string;
   firstName: string;
@@ -31,9 +35,15 @@ export type User = {
   birthdate: string;
 };
 
-export enum SortOption {
-  Publisher = 'Publisher',
-  Bookname = 'Bookname',
-  PageAsc = 'Pages ascending',
-  PagesDesc = 'Pages descending'
+export type Language = {
+  id: number;
+  language_code: string;
+  language_name: string;
 };
+
+export enum SortOption {
+  Publisher = "Publisher",
+  Bookname = "Bookname",
+  PageAsc = "Pages ascending",
+  PagesDesc = "Pages descending",
+}

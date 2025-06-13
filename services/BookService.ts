@@ -1,6 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
 import { Book, Publisher } from "../types";
 import { fetchApi } from "./Api";
+import { BookFormData } from "../validation/schema";
 
 export async function getBooks() {
   try {
@@ -32,15 +33,32 @@ export async function getPublisher() {
   return [];
 }
 
-//give whole book as parameter but only take id ({id}: Book)
-export async function deleteBook({ id }: { id: number }) {
+export async function deleteBook(id: number) {
   try {
     const res = await fetchApi<{}>(`book/${id}`, {
       method: "DELETE",
-    })
+    });
+    if (res) {
+      return res;
+    }
   } catch (error) {
-    console.error("error deleting book:", error)
+    console.error("error deleting book:", error);
   }
+}
+
+export async function addBook(book: BookFormData) {
+  try {
+    const res = await fetchApi<Book>("book", {
+      method: "POST",
+      body: JSON.stringify(book),
+    });
+    if (res) {
+      return res;
+    }
+  } catch (error) {
+    console.error("Error adding book:", error);
+  }
+  return null;
 }
 
 export function useBooks() {

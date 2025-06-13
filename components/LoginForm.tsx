@@ -51,6 +51,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
             value={value}
             keyboardType='email-address'
             autoCapitalize='none'
+            outlineColor='#0A2543'
+            activeOutlineColor='#0A2543'
+            mode='outlined'
           />
         )}
       />
@@ -69,6 +72,9 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
             onChangeText={onChange}
             value={value}
             secureTextEntry
+            outlineColor='#0A2543'
+            activeOutlineColor='#0A2543'
+            mode='outlined'
           />
         )}
       />
@@ -80,6 +86,7 @@ const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
         title='Login'
         onPress={handleSubmit(handleLogin, onError)}
         disabled={!isValid}
+        color='#0A2543'
       />
     </View>
   );
@@ -94,12 +101,8 @@ const styles = StyleSheet.create({
     textAlign: "center",
   },
   input: {
-    height: 45,
-    borderColor: "#ccc",
-    borderWidth: 1,
     marginBottom: 10,
     paddingHorizontal: 10,
-    borderRadius: 5,
     backgroundColor: "#fff",
   },
   inputError: { borderColor: "red" },

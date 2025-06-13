@@ -76,14 +76,12 @@ const SortModal = ({
             onPress={() => onSortChange(option)}
             style={styles.sortOption}
           >
-            <View style={styles.row}>
-            <Text style={styles.text}>
-              {option}
-              {currentSort === option && (
-                <MaterialCommunityIcons style={styles.icon} name='check' />
-              )}
-            </Text>
-            </View>
+          <Text style={styles.text}>
+            {option}
+            {currentSort === option && (
+              <MaterialCommunityIcons style={styles.icon} name='check' />
+            )}
+          </Text>
           </Pressable>
         ))}
       </View>

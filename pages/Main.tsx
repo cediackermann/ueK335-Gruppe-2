@@ -29,6 +29,11 @@ export default function MainTabs() {
         <BottomNavigation.Bar
           navigationState={state as any}
           safeAreaInsets={insets}
+            style={{
+            backgroundColor: "rgba(10, 37, 67, 0.05)", 
+          }}
+          theme={{ colors: {secondaryContainer: 'rgba(10, 37, 67, 0.2)'}}}
+          activeColor='rgba(10, 37, 67)'
           onTabPress={({ route, preventDefault }) => {
             const event = navigation.emit({
               type: "tabPress",
@@ -44,10 +49,10 @@ export default function MainTabs() {
               });
             }
           }}
-          renderIcon={({ route, focused, color }) => {
+          renderIcon={({ route, focused }) => {
             const { options } = descriptors[route.key];
             return options.tabBarIcon
-              ? options.tabBarIcon({ focused, color, size: 24 })
+              ? options.tabBarIcon({ focused, color: '#0A2543', size: 24 })
               : null;
           }}
           getLabelText={({
@@ -72,10 +77,10 @@ export default function MainTabs() {
         component={Books}
         options={{
           tabBarLabel: "Books",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ size }) => (
             <MaterialCommunityIcons
               name='book-open-page-variant'
-              color={color}
+              color='#0A2543'
               size={size || 26}
             />
           ),
@@ -86,10 +91,10 @@ export default function MainTabs() {
         component={AddBook}
         options={{
           tabBarLabel: "Add Book",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ size }) => (
             <MaterialCommunityIcons
               name='plus-circle'
-              color={color}
+              color='#0A2543'
               size={size || 26}
             />
           ),
@@ -100,10 +105,10 @@ export default function MainTabs() {
         component={Profile}
         options={{
           tabBarLabel: "Profile",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ size }) => (
             <MaterialCommunityIcons
               name='account-circle'
-              color={color}
+              color='#0A2543'
               size={size || 26}
             />
           ),

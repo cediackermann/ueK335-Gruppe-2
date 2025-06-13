@@ -26,6 +26,11 @@ interface SignupFormProps {
   onSubmit: (data: SignupApiPayload) => void;
 }
 
+/**
+ * SignupForm component for user registration.
+ * @param {SignupFormProps} props - The component props.
+ * @param {(data: SignupApiPayload) => void} props.onSubmit - Callback function when the form is submitted.
+ */
 const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
   const [isDatePickerVisible, setDatePickerVisibility] =
     useState<boolean>(false);
@@ -59,12 +64,9 @@ const SignupForm: React.FC<SignupFormProps> = ({ onSubmit }) => {
   const [birthdateText, setBirthdateText] = React.useState("");
   const [birthdate, setBirthdate] = useState<Date>(new Date());
 
-  const [showPicker, setShowPicker] = React.useState(false);
-
   const showDatePicker = (): void => {
     setDatePickerVisibility(true);
   };
-
   const hideDatePicker = (): void => {
     setDatePickerVisibility(false);
   };

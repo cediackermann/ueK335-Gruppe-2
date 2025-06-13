@@ -13,13 +13,16 @@ import { useBooks, usePublishers } from "../services/BookService";
 import { SortOption, Book } from "../types";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 
-const SortHeader = ({
-  currentSort,
-  onPress,
-}: {
+/**
+ * SortHeader component displays the current sort option and allows opening the sort modal.
+ * @returns {JSX.Element} The rendered SortHeader component.
+ */
+interface SortHeaderProps {
   currentSort: SortOption;
   onPress: () => void;
-}) => (
+}
+
+const SortHeader = ({ currentSort, onPress }: SortHeaderProps) => (
   <Pressable onPress={onPress}>
     <View style={styles.sortHeader}>
       <Text variant='titleMedium' style={styles.text}>
@@ -31,17 +34,26 @@ const SortHeader = ({
   </Pressable>
 );
 
+/**
+ * Props for the SortModal component.
+ */
+interface SortModalProps {
+  visible: boolean;
+  currentSort: SortOption;
+  onClose: () => void;
+  onSortChange: (option: SortOption) => void;
+}
+
+/**
+ * SortModal component provides a modal for selecting sort options.
+ * @returns {JSX.Element} The rendered SortModal component.
+ */
 const SortModal = ({
   visible,
   currentSort,
   onClose,
   onSortChange,
-}: {
-  visible: boolean;
-  currentSort: SortOption;
-  onClose: () => void;
-  onSortChange: (option: SortOption) => void;
-}) => (
+}: SortModalProps) => (
   <Modal
     visible={visible}
     transparent
@@ -77,6 +89,10 @@ const SortModal = ({
   </Modal>
 );
 
+/**
+ * Books component displays a list of books with search and sort functionality.
+ * @returns {JSX.Element} The rendered Books component.
+ */
 export default function Books() {
   const [searchQuery, setSearchQuery] = useState("");
   const [currentSort, setCurrentSort] = useState(SortOption.Publisher);
@@ -266,4 +282,3 @@ const styles = StyleSheet.create({
     marginTop: 20,
   },
 });
-

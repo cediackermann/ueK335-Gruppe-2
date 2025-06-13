@@ -6,6 +6,13 @@ import { useDeleteBook } from "../services/BookService";
 import { useNavigation, NavigationProp } from "@react-navigation/native";
 import { RootStackParamList } from "../types";
 
+/**
+ * BookItem component displays a single book with options to view, edit, or delete.
+ * @param {object} props - The component props.
+ * @param {number} props.id - The ID of the book.
+ * @param {string} props.title - The title of the book.
+ * @param {string} props.publisher - The publisher of the book.
+ */
 export const BookItem = React.memo(
   ({
     id,

@@ -1,16 +1,27 @@
+/**
+ * @file This file defines the AddBook screen component, allowing users to add new books.
+ * @module AddBook
+ */
 import {
   Alert,
   KeyboardAvoidingView,
   Platform,
   StyleSheet,
 } from "react-native";
+import React from "react";
 import { Text } from "react-native-paper";
 import BookForm from "../components/BookForm";
 import { addBook } from "../services/BookService";
 import { BookFormData } from "../validation/schema";
 import { useMutation, useMutationState } from "@tanstack/react-query";
 
-export default function AddBook() {
+/**
+ * `AddBook` is a functional component that serves as a screen for adding new books.
+ * It utilizes `BookForm` for input and `useMutation` from `@tanstack/react-query`
+ * to handle the asynchronous book addition process.
+ *
+ */
+export default function AddBook(): React.JSX.Element {
   const mutation = useMutation({
     mutationFn: (data: BookFormData) => addBook(data),
     onSuccess: () => {
@@ -42,6 +53,10 @@ export default function AddBook() {
   );
 }
 
+/**
+ * StyleSheet for the AddBook component.
+ * @constant
+ */
 const styles = StyleSheet.create({
   keyboardAvoidingContainer: { flex: 1 },
   title: {

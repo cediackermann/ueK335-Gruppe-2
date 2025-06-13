@@ -17,6 +17,11 @@ interface SubmitFormProps {
   onSubmit: (data: BookFormData) => void;
 }
 
+/**
+ * BookForm component for adding new book details.
+ * @param {SubmitFormProps} props - The component props.
+ * @param {(data: BookFormData) => void} props.onSubmit - Callback function when the form is submitted.
+ */
 const BookForm: React.FC<SubmitFormProps> = ({ onSubmit }) => {
   const publishers = usePublishers();
   const languages = useLanguages();

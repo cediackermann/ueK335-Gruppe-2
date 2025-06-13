@@ -15,6 +15,13 @@ interface SubmitFormPropsWithID {
   readOnly?: boolean;
 }
 
+/**
+ * BookEditForm component for editing book details.
+ * @param {SubmitFormPropsWithID} props - The component props.
+ * @param {number} props.id - The ID of the book to edit.
+ * @param {(data: BookFormData) => void} [props.onSubmit] - Callback function when the form is submitted.
+ * @param {boolean} [props.readOnly=false] - If true, the form fields will be read-only.
+ */
 const BookEditForm: React.FC<SubmitFormPropsWithID> = ({
   onSubmit,
   id,

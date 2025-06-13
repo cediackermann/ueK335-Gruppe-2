@@ -1,8 +1,12 @@
-import { useQuery } from "@tanstack/react-query";
+import { useQuery, UseQueryResult } from "@tanstack/react-query";
 import { fetchApi } from "./Api";
 import { Language } from "../types";
 
-export async function getLanguages() {
+/**
+ * Fetches all languages from the API.
+ * @returns {Promise<Language[]>} A promise that resolves with an array of languages.
+ */
+export async function getLanguages(): Promise<Language[]> {
   try {
     const res = await fetchApi<Language[]>("book_language", {
       method: "GET",
@@ -17,8 +21,12 @@ export async function getLanguages() {
   return [];
 }
 
-export function useLanguages() {
-  return useQuery({
+/**
+ * Custom hook for fetching languages.
+ * @returns {UseQueryResult<Language[], Error>} A query object from `@tanstack/react-query`.
+ */
+export function useLanguages(): UseQueryResult<Language[], Error> {
+  return useQuery<Language[], Error>({
     queryKey: ["book_language"],
     queryFn: getLanguages,
   });

@@ -14,6 +14,11 @@ interface LoginFormProps {
   onSubmit: (data: LoginFormData) => void;
 }
 
+/**
+ * LoginForm component for user authentication.
+ * @param {LoginFormProps} props - The component props.
+ * @param {(data: LoginFormData) => void} props.onSubmit - Callback function when the form is submitted.
+ */
 const LoginForm: React.FC<LoginFormProps> = ({ onSubmit }) => {
   const {
     control,

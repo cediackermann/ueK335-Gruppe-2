@@ -23,6 +23,14 @@ type Props = {
   navigation: HomeScreenNavigationProp;
 };
 
+/**
+ * Home component serves as the landing page of the application, displaying a welcome message,
+ * a daily book recommendation, and a button to navigate to the main application screens.
+ *
+ * @param {object} props - The component's props.
+ * @param {HomeScreenNavigationProp} props.navigation - The navigation prop for navigating to other screens.
+ * @returns {JSX.Element} The rendered Home component.
+ */
 const Home: React.FC<Props> = ({ navigation }) => {
   const {
     data: booksData,

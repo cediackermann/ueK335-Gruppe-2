@@ -76,12 +76,14 @@ const SortModal = ({
             onPress={() => onSortChange(option)}
             style={styles.sortOption}
           >
+            <View style={styles.row}>
             <Text style={styles.text}>
               {option}
               {currentSort === option && (
                 <MaterialCommunityIcons style={styles.icon} name='check' />
               )}
             </Text>
+            </View>
           </Pressable>
         ))}
       </View>
@@ -206,7 +208,7 @@ const styles = StyleSheet.create({
     paddingTop: 25,
   },
   searchbar: {
-    backgroundColor: "#fff",
+    backgroundColor: "rgba(0,0,0,0)",
     color: "#0D2A4F",
     outlineColor: "#0D2A4F",
     outlineStyle: "solid",
@@ -216,6 +218,7 @@ const styles = StyleSheet.create({
     color: "#0D2A4F",
     fontSize: 16,
     paddingTop: 5,
+    justifyContent: 'space-around',
   },
   header: {
     fontSize: 18,
@@ -264,16 +267,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
     paddingBottom: 15,
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: 'rgba(10, 37, 67, 0.4)',
   },
   sortOption: {
-    paddingVertical: 15,
+    paddingVertical: 10,
     paddingHorizontal: 10,
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     borderBottomWidth: 1,
-    borderBottomColor: "#eee",
+    borderBottomColor: 'rgba(10, 37, 67, 0.1)',
   },
   loadingContainer: {
     flex: 1,

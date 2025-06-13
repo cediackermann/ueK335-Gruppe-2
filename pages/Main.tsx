@@ -1,5 +1,8 @@
 import React from "react";
-import { createBottomTabNavigator, BottomTabBarProps } from "@react-navigation/bottom-tabs";
+import {
+  createBottomTabNavigator,
+  BottomTabBarProps,
+} from "@react-navigation/bottom-tabs";
 import { BottomNavigation } from "react-native-paper";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { CommonActions, RouteProp } from "@react-navigation/native";
@@ -13,13 +16,18 @@ const Tab = createBottomTabNavigator<MainTabParamList>();
 export default function MainTabs() {
   return (
     <Tab.Navigator
-      initialRouteName='Books' // Innerhalb des Tab-Navigators ist "Books" der erste Tab
+      initialRouteName='Books'
       screenOptions={{
         headerShown: false,
       }}
-      tabBar={({ navigation, state, descriptors, insets }: BottomTabBarProps) => (
+      tabBar={({
+        navigation,
+        state,
+        descriptors,
+        insets,
+      }: BottomTabBarProps) => (
         <BottomNavigation.Bar
-          navigationState={state}
+          navigationState={state as any}
           safeAreaInsets={insets}
           onTabPress={({ route, preventDefault }) => {
             const event = navigation.emit({
@@ -42,12 +50,16 @@ export default function MainTabs() {
               ? options.tabBarIcon({ focused, color, size: 24 })
               : null;
           }}
-          getLabelText={({ route }: { route: RouteProp<MainTabParamList, keyof MainTabParamList> }) => {
+          getLabelText={({
+            route,
+          }: {
+            route: RouteProp<MainTabParamList, keyof MainTabParamList>;
+          }) => {
             const { options } = descriptors[route.key];
-            if (typeof options.tabBarLabel === 'string') {
+            if (typeof options.tabBarLabel === "string") {
               return options.tabBarLabel;
             }
-            if (typeof options.title === 'string') {
+            if (typeof options.title === "string") {
               return options.title;
             }
             return route.name;

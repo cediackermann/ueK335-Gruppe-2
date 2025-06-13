@@ -131,7 +131,7 @@ const Home: React.FC<Props> = ({ navigation }) => {
           labelStyle={styles.buttonLabel}
           contentStyle={styles.buttonContent}
           uppercase={true}
-          disabled={isNavigating} // Disable button while navigating
+          disabled={isNavigating}
         >
           {isNavigating ? (
             <ActivityIndicator size='small' color='#FFFFFF' />

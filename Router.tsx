@@ -4,8 +4,8 @@ import { useActiveUser } from "./services/ActiveUser";
 import Auth from "./pages/Auth";
 import Home from "./pages/Home";
 import MainTabs from "./pages/Main";
-import EditBook from "./tabs/EditBook";
-import BookDetail from "./tabs/BookDetail"; // Import BookDetail
+import EditBook from "./pages/EditBook";
+import BookDetail from "./pages/BookDetail"; // Import BookDetail
 import { RootStackParamList } from "./types";
 import { ActivityIndicator, View, StyleSheet } from "react-native";
 

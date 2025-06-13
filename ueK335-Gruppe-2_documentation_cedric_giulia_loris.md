@@ -108,3 +108,19 @@ The test cases for the application were all executed on an android emulated devi
 | TC012      | Profile    | Medium   | Verify logout functionality                                     | User is logged in                              | 1. Navigate to Profile screen<br>2. Click Logout button                                                                                                         | User is logged out and redirected to the login screen                            | As expected   | Pass   | Loris            |
 | TC013      | BookForm   | High     | Verify update book functionality                                | User is logged in<br>Book exists in the system | 1. Navigate to Books screen<br>2. Click edit icon on a book<br>3. Modify book details<br>4. Click Save button                                                   | Book details are updated and reflected in the list                               | As expected   | Pass   | Giulia           |
 | TC014      | Home       | Medium   | Verify navigation to Home page                                  | User is logged in                              | 1. Navigate to Home screen                                                                                                                                      | Home page is displayed with an application overview                              | As expected   | Pass   | Cedric           |
+
+## Work Distribution
+
+| Task Description                         | Cedric | Giulia | Loris |
+| ---------------------------------------- | ------ | ------ | ----- |
+| User Authentication (Login, Signup)      | X      |        |       |
+| API Integration (Backend)                | X      |        |       |
+| Book Management (Viewing)                | X      |        | X     |
+| Book Management (Adding)                 | X      |        |       |
+| Book Management (Deleting)               |        | X      |       |
+| Book Management (Updating)               | X      | X      |       |
+| Navigation (Home Page)                   |        | X      | X     |
+| Design and UI Implementation (Figma)     |        | X      | X     |
+| Test Case Execution                      | X      | X      | X     |
+| Documentation (User Stories, Test Cases) | X      | X      | X     |
+| Figma Prototype Creation                 | X      | X      | X     |

@@ -9,6 +9,7 @@ export type RootStackParamList = {
   Books: undefined;
   Main: { screen?: keyof MainTabParamList; params?: any };
   BookEdit?: { bookId: number };
+  BookDetail?: { bookId: number }; // Add BookDetail route
   Home: undefined;
 };
 

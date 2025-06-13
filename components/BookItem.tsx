@@ -3,6 +3,8 @@ import { View, StyleSheet, Pressable, ActivityIndicator } from "react-native";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { Card, Text } from "react-native-paper";
 import { useDeleteBook } from "../services/BookService";
+import { useNavigation, NavigationProp } from "@react-navigation/native";
+import { RootStackParamList } from "../types";
 
 export const BookItem = React.memo(
   ({
@@ -16,63 +18,75 @@ export const BookItem = React.memo(
   }) => {
     const { mutate: deleteBookMutation, isPending: isDeleting } =
       useDeleteBook();
+    const navigation = useNavigation<NavigationProp<RootStackParamList>>();
 
     const handleDelete = () => {
       deleteBookMutation(id);
     };
 
+    const handleEdit = () => {
+      navigation.navigate("BookEdit", { bookId: id });
+    };
+
+    const handlePress = () => {
+      navigation.navigate("BookDetail", { bookId: id });
+    };
+
     return (
-      <Card mode='elevated' style={styles.card}>
-        <View
-          style={{
-            width: "100%",
-            flexDirection: "row",
-            justifyContent: "space-between",
-          }}
-        >
-          <Card.Content style={{ flex: 1 }}>
-            <View style={styles.cardHeader}>
+      <Pressable onPress={handlePress}>
+        <Card mode='elevated' style={styles.card}>
+          <View
+            style={{
+              width: "100%",
+              flexDirection: "row",
+              justifyContent: "space-between",
+            }}
+          >
+            <Card.Content style={{ flex: 1 }}>
+              <View style={styles.cardHeader}>
+                <Text
+                  variant='titleLarge'
+                  style={styles.cardHeader}
+                  numberOfLines={1}
+                  ellipsizeMode='tail'
+                >
+                  {title}
+                </Text>
+              </View>
               <Text
-                variant='titleLarge'
-                style={styles.cardHeader}
+                variant='bodyMedium'
+                style={styles.authorText}
                 numberOfLines={1}
                 ellipsizeMode='tail'
               >
-                {title}
+                by {publisher}
               </Text>
-            </View>
-            <Text
-              variant='bodyMedium'
-              style={styles.authorText}
-              numberOfLines={1}
-              ellipsizeMode='tail'
-            >
-              by {publisher}
-            </Text>
-          </Card.Content>
-          <View style={{ justifyContent: "center", paddingRight: 5 }}>
-            <Card.Actions>
-              <MaterialCommunityIcons
-                name='pencil-outline'
-                style={styles.button}
-              />
-              {isDeleting ? (
-                <ActivityIndicator
-                  size='small'
-                  color='#0A2543'
-                  style={styles.button}
-                />
-              ) : (
+            </Card.Content>
+            <View style={{ justifyContent: "center", paddingRight: 5 }}>
+              <Card.Actions>
                 <MaterialCommunityIcons
-                  onPress={handleDelete}
-                  name='trash-can-outline'
+                  name='pencil-outline'
                   style={styles.button}
+                  onPress={handleEdit}
                 />
-              )}
-            </Card.Actions>
+                {isDeleting ? (
+                  <ActivityIndicator
+                    size='small'
+                    color='#0A2543'
+                    style={styles.button}
+                  />
+                ) : (
+                  <MaterialCommunityIcons
+                    onPress={handleDelete}
+                    name='trash-can-outline'
+                    style={styles.button}
+                  />
+                )}
+              </Card.Actions>
+            </View>
           </View>
-        </View>
-      </Card>
+        </Card>
+      </Pressable>
     );
   }
 );

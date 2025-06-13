@@ -10,7 +10,9 @@ cd ueK335-Gruppe-2
 npm install
 npm start
 ```
+
 ## Prototype
+
 https://www.figma.com/design/w8rIkRfbUTGbvDaBig66Jn/uek335-group2_mockup?node-id=14-7&t=WXGN4yIVzRhV4Kmi-1
 
 ## User Stories
@@ -114,5 +116,5 @@ The test cases for the application were all executed on an android emulated devi
 | TC010      | BookForm   | Low      | Verify ISBN validation                                          | User is logged in                              | 1. Navigate to AddBook screen<br>2. Enter invalid ISBN format<br>3. Try to submit the form                                                                      | Error message is displayed for invalid ISBN format                               | As expected   | Pass   | Cedric           |
 | TC011      | Profile    | Medium   | Verify user information is displayed correctly                  | User is logged in                              | 1. Navigate to Profile screen                                                                                                                                   | User's information (name, email, birthdate) is displayed correctly               | As expected   | Pass   | Giulia           |
 | TC012      | Profile    | Medium   | Verify logout functionality                                     | User is logged in                              | 1. Navigate to Profile screen<br>2. Click Logout button                                                                                                         | User is logged out and redirected to the login screen                            | As expected   | Pass   | Loris            |
-| TC013      | BookForm   | High     | Verify update book functionality                                | User is logged in<br>Book exists in the system | 1. Navigate to Books screen<br>2. Click edit icon on a book<br>3. Modify book details<br>4. Click Save button                                                   | Book details are updated and reflected in the list                               | As expected   | Pass   | [Assignee]       |
-| TC014      | Home       | Medium   | Verify navigation to Home page                                  | User is logged in                              | 1. Navigate to Home screen                                                                                                                                      | Home page is displayed with an application overview                              | As expected   | Pass   | [Assignee]       |
+| TC013      | BookForm   | High     | Verify update book functionality                                | User is logged in<br>Book exists in the system | 1. Navigate to Books screen<br>2. Click edit icon on a book<br>3. Modify book details<br>4. Click Save button                                                   | Book details are updated and reflected in the list                               | As expected   | Pass   | Giulia           |
+| TC014      | Home       | Medium   | Verify navigation to Home page                                  | User is logged in                              | 1. Navigate to Home screen                                                                                                                                      | Home page is displayed with an application overview                              | As expected   | Pass   | Cedric           |

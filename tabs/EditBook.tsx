@@ -1,18 +1,33 @@
-import React, { useEffect, useState } from 'react'
-import { Text } from "react-native-paper";
-import { Alert, KeyboardAvoidingView, Platform, View } from 'react-native';
-import { useMutation } from '@tanstack/react-query';
-import BookEditForm from '../components/BookEditForm';
-import { BookFormData } from '../validation/schema';
-import { Book } from '../types';
-import { editBook } from '../services/BookService';
+import React, { useEffect, useState } from "react";
+import { Button, Text } from "react-native-paper";
+import { Alert, KeyboardAvoidingView, Platform, View } from "react-native";
+import { useMutation } from "@tanstack/react-query";
+import BookEditForm from "../components/BookEditForm";
+import { BookFormData } from "../validation/schema";
+import { editBook } from "../services/BookService";
+import {
+  useRoute,
+  RouteProp,
+  useNavigation,
+  NavigationProp,
+} from "@react-navigation/native";
+import { RootStackParamList } from "../types";
+import queryClient from "../services/QueryClient";
 
+export default function EditBook() {
+  const route = useRoute<RouteProp<RootStackParamList, "BookEdit">>();
+  const navigation = useNavigation<NavigationProp<RootStackParamList>>();
+  const bookId = route.params?.bookId;
+  if (bookId === undefined) {
+    return <Text>Error: Book ID not provided.</Text>;
+  }
 
-export default function EditBook({ id }: {id: number}) {
   const mutation = useMutation({
-    mutationFn: (data: BookFormData) => editBook(data, id),
+    mutationFn: (data: BookFormData) => editBook(data, bookId),
     onSuccess: () => {
       Alert.alert("Success", "Book edited successfully!");
+      queryClient.invalidateQueries({ queryKey: ["books"] });
+      navigation.goBack();
     },
     onError: (error: any) => {
       console.error("Error editing book:", error);
@@ -21,17 +36,21 @@ export default function EditBook({ id }: {id: number}) {
   });
   return (
     <>
-    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
-      {mutation.isPending ? (
-        <Text>Loading...</Text>
-      ) : (
-        <BookEditForm onSubmit={(data: BookFormData) => {
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
+        {mutation.isPending ? (
+          <Text>Loading...</Text>
+        ) : (
+          <BookEditForm
+            onSubmit={(data: BookFormData) => {
               mutation.mutate(data);
-            } } id={id}        />
-      )}
-    </KeyboardAvoidingView>
-
+            }}
+            id={bookId}
+          />
+        )}
+      </KeyboardAvoidingView>
+      <Button onPress={() => navigation.goBack()}>Go Back</Button>
     </>
-  )
+  );
 }
-

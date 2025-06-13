@@ -10,6 +10,8 @@ cd ueK335-Gruppe-2
 npm install
 npm start
 ```
+## Prototype
+https://www.figma.com/design/w8rIkRfbUTGbvDaBig66Jn/uek335-group2_mockup?node-id=14-7&t=WXGN4yIVzRhV4Kmi-1
 
 ## User Stories
 

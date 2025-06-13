@@ -42,7 +42,6 @@ const BookForm: React.FC<SubmitFormProps> = ({ onSubmit }) => {
 
   return (
     <View style={styles.formContainer}>
-      <Text style={styles.title}>Login</Text>
       <Controller
         control={control}
         name='title'

@@ -33,17 +33,18 @@ export async function getPublisher() {
   return [];
 }
 
-export async function deleteBook(id: number) {
+export async function getBookById({ id}: {id: number}) {
   try {
-    const res = await fetchApi<{}>(`book/${id}`, {
-      method: "DELETE",
+    const res = await fetchApi<Book>(`book/${id}`, {
+      method: "GET",
     });
     if (res) {
       return res;
     }
   } catch (error) {
-    console.error("error deleting book:", error);
+    console.error("Error getting book by id:", error);
   }
+  return null;
 }
 
 export async function addBook(book: BookFormData) {
@@ -57,6 +58,21 @@ export async function addBook(book: BookFormData) {
     }
   } catch (error) {
     console.error("Error adding book:", error);
+  }
+  return null;
+}
+
+export async function editBook(book: BookFormData, id: number) {
+  try {
+    const res = await fetchApi<Book>(`book/${id}`, {
+      method: "PUT",
+      body: JSON.stringify(book),
+    });
+    if (res) {
+      return res;
+    }
+  } catch (error) {
+    console.error("Error updating book:", error);
   }
   return null;
 }

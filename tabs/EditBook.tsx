@@ -1,53 +1,37 @@
 import React, { useEffect, useState } from 'react'
-import { Button, Text } from "react-native-paper";
-import { getBookById } from '../services/BookService';
+import { Text } from "react-native-paper";
+import { Alert, KeyboardAvoidingView, Platform, View } from 'react-native';
+import { useMutation } from '@tanstack/react-query';
+import BookEditForm from '../components/BookEditForm';
+import { BookFormData } from '../validation/schema';
 import { Book } from '../types';
-import { View } from 'react-native';
-import { Controller, FieldErrors, useForm } from 'react-hook-form';
-import { BookFormData, bookFormSchema } from '../validation/schema';
-import { zodResolver } from '@hookform/resolvers/zod';
+import { editBook } from '../services/BookService';
 
 
 export default function EditBook({ id }: {id: number}) {
-  const [book, setBook] = useState<Book>();
-  const {
-    control,
-    handleSubmit,
-    formState: { errors, isValid },
-  } = useForm<BookFormData>({
-    mode: "onChange",
-    resolver: zodResolver(bookFormSchema),
-    defaultValues: {
-      title: book?.title,
-      publisher_id: book?.publisher_id,
-      isbn13: parseInt(book?.isbn13 || '0'),
-      num_pages: book?.num_pages,
-      language_id: book?.language_id,
+  const mutation = useMutation({
+    mutationFn: (data: BookFormData) => editBook(data),
+    onSuccess: () => {
+      Alert.alert("Success", "Book edited successfully!");
+    },
+    onError: (error: any) => {
+      console.error("Error editing book:", error);
+      Alert.alert("Error", "Failed to edit book. Please try again.");
     },
   });
-
-  const onError = (formErrors: FieldErrors<BookFormData>) => {
-    console.log("Error editing Book:", formErrors);
-  };
-
-  const onSubmit = (data: BookFormData) => {
-    
-  }
-
-  useEffect(() => {
-    const fetchBook = async () => {
-      const result = await getBookById({id});
-      setBook(result as Book);
-    };
-    fetchBook();
-  })
   return (
     <>
-    <Text>Edit {book?.title}</Text>
-    <View>
-      <Controller />
-    </View>
-    <Button title='Confirm Changes' onPress={handleSubmit(onSubmit, onError)}/>
+    <KeyboardAvoidingView behavior={Platform.OS === "ios" ? "padding" : "height"}>
+      {mutation.isPending ? (
+        <Text>Loading...</Text>
+      ) : (
+        <BookEditForm onSubmit={(data: BookFormData) => {
+              mutation.mutate(data);
+            } } id={id}        />
+      )}
+    </KeyboardAvoidingView>
+
     </>
   )
 }
+

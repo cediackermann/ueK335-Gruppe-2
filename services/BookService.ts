@@ -62,9 +62,9 @@ export async function addBook(book: BookFormData) {
   return null;
 }
 
-export async function editBook(book: Book) {
+export async function editBook(book: BookFormData, id: number) {
   try {
-    const res = await fetchApi<Book>(`book/${book.id}`, {
+    const res = await fetchApi<Book>(`book/${id}`, {
       method: "PUT",
       body: JSON.stringify(book),
     });

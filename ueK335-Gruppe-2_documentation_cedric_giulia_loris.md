@@ -2,7 +2,8 @@
 
 ## Prototype
 
-https://www.figma.com/design/w8rIkRfbUTGbvDaBig66Jn/uek335-group2_mockup?node-id=14-7&t=WXGN4yIVzRhV4Kmi-1
+Switch on the left to also see our first prototype. In the Pages section <br>
+[https://www.figma.com/design/w8rIkRfbUTGbvDaBig66Jn/uek335-group2_mockup?node-id=14-7&t=WXGN4yIVzRhV4Kmi-1](https://www.figma.com/design/hSykBZIRAUK2G0pUDwrX3z/uek335-group2_mockup?node-id=58432-257&t=EwdSuCJt3Dx1cmFt-1)
 
 ## User Stories
 

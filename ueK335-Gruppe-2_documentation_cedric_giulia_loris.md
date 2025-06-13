@@ -3,8 +3,9 @@
 ## Prototype
 
 Switch on the left to also see our first prototype. In the Pages section <br>
-[https://www.figma.com/design/w8rIkRfbUTGbvDaBig66Jn/uek335-group2_mockup?node-id=14-7&t=WXGN4yIVzRhV4Kmi-1](https://www.figma.com/design/hSykBZIRAUK2G0pUDwrX3z/uek335-group2_mockup?node-id=58432-257&t=EwdSuCJt3Dx1cmFt-1)
-
+[https://www.figma.com/design/w8rIkRfbUTGbvDaBig66Jn/uek335-group2_mockup?node-id=14-7&t=WXGN4yIVzRhV4Kmi-1](https://www.figma.com/design/hSykBZIRAUK2G0pUDwrX3z/uek335-group2_mockup?node-id=58432-257&t=EwdSuCJt3Dx1cmFt-1)<br>
+Presentation: <br>
+https://docs.google.com/presentation/d/1YCJ0M32jfI1fAqyO-CtcCq1cKXpeKa5p0jM04S2wVt0/edit?usp=sharing
 ## User Stories
 
 ### US001: User Authentication
@@ -108,6 +109,9 @@ The test cases for the application were all executed on an android emulated devi
 | TC012      | Profile    | Medium   | Verify logout functionality                                     | User is logged in                              | 1. Navigate to Profile screen<br>2. Click Logout button                                                                                                         | User is logged out and redirected to the login screen                            | As expected   | Pass   | Loris            |
 | TC013      | BookForm   | High     | Verify update book functionality                                | User is logged in<br>Book exists in the system | 1. Navigate to Books screen<br>2. Click edit icon on a book<br>3. Modify book details<br>4. Click Save button                                                   | Book details are updated and reflected in the list                               | As expected   | Pass   | Giulia           |
 | TC014      | Home       | Medium   | Verify navigation to Home page                                  | User is logged in                              | 1. Navigate to Home screen                                                                                                                                      | Home page is displayed with an application overview                              | As expected   | Pass   | Cedric           |
+<br>
+in Google Sheets:
+https://docs.google.com/spreadsheets/d/1jBu1-FFCczmUaeQa9r7BA1hKp5xsmGt_R70RgKXUmH4/edit?usp=sharing
 
 ## Work Distribution
 

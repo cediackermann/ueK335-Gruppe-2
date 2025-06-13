@@ -109,6 +109,9 @@ The test cases for the application were all executed on an android emulated devi
 | TC012      | Profile    | Medium   | Verify logout functionality                                     | User is logged in                              | 1. Navigate to Profile screen<br>2. Click Logout button                                                                                                         | User is logged out and redirected to the login screen                            | As expected   | Pass   | Loris            |
 | TC013      | BookForm   | High     | Verify update book functionality                                | User is logged in<br>Book exists in the system | 1. Navigate to Books screen<br>2. Click edit icon on a book<br>3. Modify book details<br>4. Click Save button                                                   | Book details are updated and reflected in the list                               | As expected   | Pass   | Giulia           |
 | TC014      | Home       | Medium   | Verify navigation to Home page                                  | User is logged in                              | 1. Navigate to Home screen                                                                                                                                      | Home page is displayed with an application overview                              | As expected   | Pass   | Cedric           |
+<br>
+in Google Sheets:
+https://docs.google.com/spreadsheets/d/1jBu1-FFCczmUaeQa9r7BA1hKp5xsmGt_R70RgKXUmH4/edit?usp=sharing
 
 ## Work Distribution
 

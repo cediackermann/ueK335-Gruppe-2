@@ -6,9 +6,10 @@ export type MainTabParamList = {
 
 export type RootStackParamList = {
   Auth: undefined;
-  Home: undefined;
+  Books: undefined;
   Main: { screen?: keyof MainTabParamList; params?: any };
   BookEdit?: { bookId: number };
+  Home: undefined;
 };
 
 export type Book = {
